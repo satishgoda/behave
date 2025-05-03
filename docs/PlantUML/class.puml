@@ -1,0 +1,74 @@
+@startuml
+class BehaveException
+
+class Blackboard {
+    - args
+    - kwargs
+    - tick
+    + new_iterator(node)
+}
+
+class DebugBlackboard {
+    - debugger
+    + new_iterator(node)
+}
+
+class BeNode {
+    - desc
+    - _name
+    + name
+    + blackboard(*args, **kwargs)
+    + debug(debugger, *args, **kwargs)
+    + clone()
+    + copy_from(other)
+}
+
+class BeAction {
+    - func
+    + name
+}
+
+class BeGeneratorAction {
+    - generatorfunc
+    + name
+}
+
+class BeCondition {
+    - func
+    + name
+}
+
+class BeComposite {
+    - children
+    + copy_from(other)
+}
+
+class BeSelect {
+    + |(child)
+}
+
+class BeSequence {
+    + >>(child)
+}
+
+class BeDecorator {
+    - decorators
+    + *(other)
+}
+
+class BeDecorated {
+    - decorator
+    - node
+    + name
+}
+
+BehaveException <|— Blackboard
+Blackboard <|— DebugBlackboard
+BeNode <|— BeAction
+BeNode <|— BeGeneratorAction
+BeNode <|— BeCondition
+BeNode <|— BeComposite
+BeComposite <|— BeSelect
+BeComposite <|— BeSequence
+BeDecorator <|— BeDecorated
+@enduml
