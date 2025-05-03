@@ -1,0 +1,7 @@
+@startuml
+package "Behave" {
+    [core] --> [helper]
+    [helper] --> [decorators]
+    [decorators] --> [tests]
+}
+@enduml
