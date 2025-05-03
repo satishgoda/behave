@@ -1,0 +1,11 @@
+@startuml
+actor User
+participant Blackboard
+participant BeNode
+participant DebugBlackboard
+
+User -> Blackboard : Create blackboard
+Blackboard -> BeNode : Call tick()
+BeNode -> DebugBlackboard : Debug with debugger
+DebugBlackboard -> Blackboard : Call tick()
+@enduml
