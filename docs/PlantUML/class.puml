@@ -62,13 +62,25 @@ class BeDecorated {
     + name
 }
 
-BehaveException <|— Blackboard
-Blackboard <|— DebugBlackboard
-BeNode <|— BeAction
-BeNode <|— BeGeneratorAction
-BeNode <|— BeCondition
-BeNode <|— BeComposite
-BeComposite <|— BeSelect
-BeComposite <|— BeSequence
-BeDecorator <|— BeDecorated
+class forever
+class repeat
+class succeeder
+class failer
+class not_
+
+forever --> BeDecorator
+repeat --> BeDecorator
+succeeder --> BeDecorator
+failer --> BeDecorator
+not_ --> BeDecorator
+
+BehaveException <|-- Blackboard
+Blackboard <|-- DebugBlackboard
+BeNode <|-- BeAction
+BeNode <|-- BeGeneratorAction
+BeNode <|-- BeCondition
+BeNode <|-- BeComposite
+BeComposite <|-- BeSelect
+BeComposite <|-- BeSequence
+BeDecorator <|-- BeDecorated
 @enduml
