@@ -2,10 +2,12 @@
 actor User
 participant Blackboard
 participant BeNode
+participant BeDecorator
 participant DebugBlackboard
 
 User -> Blackboard : Create blackboard
 Blackboard -> BeNode : Call tick()
-BeNode -> DebugBlackboard : Debug with debugger
+BeNode -> BeDecorator : Apply decorator (e.g., forever, repeat)
+BeDecorator -> DebugBlackboard : Debug with debugger
 DebugBlackboard -> Blackboard : Call tick()
 @enduml
