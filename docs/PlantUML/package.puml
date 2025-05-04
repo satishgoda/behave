@@ -1,0 +1,12 @@
+@startuml
+package behave {
+    [core]
+    [helper]
+    [decorator]
+    [__init__]
+}
+package test {
+    [test_nodes]
+    [test_tree_grammar]
+}
+@enduml
