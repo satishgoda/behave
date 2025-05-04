@@ -19,7 +19,7 @@ while bb.tick() == RUNNING:
 ### Import from behave:
 
 ````
-from behave import condition, action, FAILURE
+from behave import condition, action, FAILURE, RUNNING, SUCCESS
 ````
 
 ### Define condition nodes
@@ -44,11 +44,11 @@ Action functions can return `SUCCESS`, `FAILURE`, `RUNNING` states. Return `None
 ````
 @action
 def wow_large_number(x):
-    print "WOW, %d is a large number!" % x
+    print(f"WOW, {x} is a large number!”)
 
 @action
 def doomed(x):
-    print "%d is doomed" % x
+    print(f"{x} is doomed")
     return FAILURE
 ````
 
@@ -62,9 +62,9 @@ And you can define an action with a generator function:
 @action
 def count_from_1(x):
     for i in range(1, x):
-        print "count", i
+        print(f"count {i}")
         yield
-    print "count", x
+    print(f"count {x}")
 
 ````
 
@@ -120,10 +120,10 @@ bb = tree.blackboard(5) # Creates an run instance
 
 # Now let the tree do its job, till job is done
 state = bb.tick()
-print "state = %s\n" % state
+print(f"state = {state}\n")
 while state == RUNNING:
     state = bb.tick()
-    print "state = %s\n" % state
+    print(f"state = {state}\n")
 assert state == SUCCESS or state == FAILURE
 ````
 
@@ -155,16 +155,16 @@ To debug the tree, you need to:
 
 ````
 def my_debugger(node, state):
-    print "[%s] -> %s" % (node.name, state)
+    print(f"[{node.name}] -> {state}")
 
 bb = tree.debug(my_debugger, 5) # Creates an blackboard with debugger enabled
 
 # Now let the tree do its job, till job is done
 state = bb.tick()
-print "state = %s\n" % state
+print(f"state = {state}\n")
 while state == RUNNING:
     state = bb.tick()
-    print "state = %s\n" % state
+    print(f"state = {state}\n")
 assert state == SUCCESS or state == FAILURE
 ````
 
@@ -221,7 +221,7 @@ And make a little change to `my_debugger`:
 ````
 def my_debugger(node, state):
     if node.desc:
-        print "[%s] -> %s" % (node.desc, state)
+        print(f"[{node.desc}] -> {state}")
 ````
 
 Try it again:
